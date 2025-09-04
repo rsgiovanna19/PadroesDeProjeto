@@ -33,4 +33,11 @@ R: se uma classe filha sobrescreve um método da classe pai usando override, a i
 Se o método representa a mesma ação, mas com implementação diferente → use herança + override.
 Se é uma ação diferente, mesmo que pareça parecida, crie um método novo.
 
-2 -> 
+15/08 ----------------------------------
+
+ abstract class -> nao peremite a construcao de objetos a partir dela
+ outras são concretas -> permitem!
+
+ -> Interfaces
+
+ 
