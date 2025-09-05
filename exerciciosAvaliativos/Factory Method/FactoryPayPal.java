@@ -1,7 +1,13 @@
 public class FactoryPayPal extends PagamentoFactory {
-    @Override
-    public Pagamento criarPagamento() {
-        // E-mail presente no "gateway" falso
-        return new PagamentoPayPal("user@exemplo.com");
+    private String email;
+
+    public FactoryPayPal(String email) {
+        this.email = email;
     }
+
+    @Override
+    public iPagamento CriarPagamento() {
+        return new PagamentoPayPal(email);
+    }
+
 }

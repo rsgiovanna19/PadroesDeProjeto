@@ -11,7 +11,7 @@ public abstract class LibraryItem implements Borrowable {
         this.isBorrowed = false;
     }
 
-    public void displayInfo() {
+    public void showData() {
         System.out.println("Título: " + title);
         System.out.println("Autor: " + author);
         System.out.println("Ano de Publicação: " + publicationYear);
@@ -32,9 +32,9 @@ public abstract class LibraryItem implements Borrowable {
     public void returnItem() {
         if (isBorrowed) {
             isBorrowed = false;
-            System.out.println(title + " foi devolvido.");
+            System.out.println("O livro" + title + " foi devolvido.");
         } else {
-            System.out.println(title + " não estava emprestado.");
+            System.out.println("O livro" + " não estava emprestado.");
         }
     }
 }

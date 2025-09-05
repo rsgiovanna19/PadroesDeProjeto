@@ -1,21 +1,27 @@
-public class PagamentoCriptomoeda implements Pagamento {
-    private final String enderecoCarteira;
-    private final CarteiraCripto carteira;
+public class PagamentoCriptomoeda implements iPagamento {
 
-    public PagamentoCriptomoeda(String enderecoCarteira, CarteiraCripto carteira) {
-        this.enderecoCarteira = enderecoCarteira;
-        this.carteira = carteira;
+    public double saldo;
+
+    public PagamentoCriptomoeda(double saldo) {
+        this.saldo = saldo;
+    }
+
+    private boolean saldoSuficiente(double valor) {
+        if (saldo >= valor) {
+            return true;
+        }
+
+        return false;
     }
 
     @Override
-    public String processarPagamento(double valor) {
-        if (enderecoCarteira == null || !enderecoCarteira.matches("^[a-zA-Z0-9]{10,}$")) {
-            return "Erro: endereço de carteira inválido.";
+    public String processarPagamento(double valorTransacao) {
+        if (saldoSuficiente(valorTransacao)) {
+            saldo -= valorTransacao;
+            return "Aprovado";
         }
-        if (!carteira.possuiSaldo(valor)) {
-            return String.format("Erro: saldo insuficiente (saldo atual: R$ %.2f).", carteira.getSaldo());
-        }
-        carteira.debitar(valor);
-        return String.format("Pagamento aprovado via Criptomoeda (R$ %.2f). Saldo restante: R$ %.2f.", valor, carteira.getSaldo());
+
+        return "Saldo insuficiente. Tente novamente";
     }
+    
 }

@@ -1,19 +1,39 @@
-public class PagamentoPayPal implements Pagamento {
-    private final String emailUsuario;
-    private final PayPalGatewayFalso gateway = new PayPalGatewayFalso();
+import java.util.ArrayList;
 
-    public PagamentoPayPal(String emailUsuario) {
-        this.emailUsuario = emailUsuario;
+public class PagamentoPayPal implements iPagamento {
+
+    private String email;
+
+    public PagamentoPayPal(String email) {
+        this.email = email;
+    }
+
+    public ArrayList<String> getEmail() {
+
+        ArrayList<String> listaEmails = new ArrayList<>();
+
+        listaEmails.add("lara@mail.com");
+        listaEmails.add("lara2@gmail.com");
+        listaEmails.add("lara3@hotmail.com");
+
+        return listaEmails;
+    }
+
+    public boolean validarConta() {
+        ArrayList<String> listaEmails = getEmail();
+
+        if (listaEmails.contains(email)) {
+            return true;
+        }
+
+        return false;
     }
 
     @Override
-    public String processarPagamento(double valor) {
-        if (emailUsuario == null || !emailUsuario.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")) {
-            return "Erro: e-mail inválido.";
+    public String processarPagamento(double valorTransacao) {
+        if (validarConta()) {
+            return "Aprovado! Obrigado(a)";
         }
-        if (!gateway.estaVinculado(emailUsuario)) {
-            return "Erro: e-mail não vinculado a uma conta PayPal.";
-        }
-        return String.format("Pagamento aprovado via PayPal (R$ %.2f) para %s.", valor, emailUsuario);
+        return "Email invalido";
     }
 }

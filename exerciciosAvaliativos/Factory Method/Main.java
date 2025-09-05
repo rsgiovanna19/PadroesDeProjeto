@@ -3,12 +3,12 @@ public class Main {
         PagamentoService service = new PagamentoService();
 
         // Simular pagamento por cartão de crédito
-        service.processarPagamento(new FactoryCartaoCredito(), 150.00);
+        service.ProcessarPagamento(new FactoryCartaoCredito("1234567812345678"), 150.00);
 
         // Simular pagamento por PayPal
-        service.processarPagamento(new FactoryPayPal(), 75.00);
+        service.ProcessarPagamento(new FactoryPayPal("cliente@paypal.com"), 75.00);
 
         // Simular pagamento por Criptomoeda
-        service.processarPagamento(new FactoryCriptomoeda(), 300.00);
+        service.ProcessarPagamento(new FactoryCriptomoeda( 500.00), 300.00);
     }
 }

@@ -11,8 +11,8 @@ public class Magazine extends LibraryItem {
     }
 
     @Override
-    public void displayInfo() {
-        super.displayInfo();
+    public void showData() {
+        super.showData();
         System.out.println("Número da edição: " + issueNumber);
     }
 }
